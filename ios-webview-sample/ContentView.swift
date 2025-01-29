@@ -12,8 +12,8 @@ import SafariServices
 
 struct ContentView: View {
     @State private var showSafari = false
-    private let testURL = "https://blinkid-ui-test.netlify.app/"
-
+    private let testURL = "https://your-BlinkID-IBS-domain/"
+    
     var body: some View {
         VStack {
             Button("Open BlinkID testing page") {
@@ -23,7 +23,9 @@ struct ContentView: View {
             .padding()
         }
         .fullScreenCover(isPresented: $showSafari, content: {
-            SafariViewController(url: URL(string: testURL)!)
+            if let url = URL(string: testURL) {
+                SafariViewController(url: url)
+            }
         })
     }
 }
